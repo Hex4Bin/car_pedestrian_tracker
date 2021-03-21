@@ -33,8 +33,8 @@ def main():
             image=grayscaled_frame, scaleFactor=1.05, minNeighbors=2, minSize=(120, 120))
 
         # Draw rectangles around cars
-        loop(frame, cars, (0, 0, 255))
-        loop(frame, peds, (0, 255, 255))
+        draw_rectangle(frame, cars, (0, 0, 255))
+        draw_rectangle(frame, peds, (0, 255, 255))
 
         # Display the frame with cars spotted
         cv2.imshow("PRESS ESC TO QUIT", frame)
@@ -42,14 +42,17 @@ def main():
         # Wait for a keypress
         key = cv2.waitKey(1)
 
-        # stop if "q" is pressed
+        # stop if "ESC" is pressed
         if key == 27:
             break
+
+    # Release the VideoCapture
+    video.release()
 
     print("Code Completed")
 
 
-def loop(frame, type, color):
+def draw_rectangle(frame, type, color):
 
     import cv2
 
